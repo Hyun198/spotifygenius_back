@@ -12,7 +12,7 @@ const getLyrics = require('./lib/getLyrics');
 const getSong = require('./lib/getSong');
 const deepl = require('deepl-node')
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 app.use(express.static(path.join(__dirname, './client/build')));
 app.use(express.json())
@@ -22,7 +22,7 @@ app.use(cors())
 //Spotify api 설정
 const CLIENT_ID = process.env.CLIENT_ID
 const CLIENT_SECRET = process.env.CLIENT_SECRET
-const REDIRECT_URI = "http://localhost:3000"  //여기
+const REDIRECT_URI = "http://localhost:8080"  //여기
 const AUTH_ENDPOINT = "https://accounts.spotify.com/api/token"
 const RESPONSE_TYPE = "token"
 
@@ -45,12 +45,12 @@ const getAccessToken = async () => {
     }
 }
 
-app.use(express.static(path.join(__dirname, '../client/build')));
+/* app.use(express.static(path.join(__dirname, '../client/build')));
 
 // 모든 요청에 대해 index.html 제공
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+}); */
 
 app.post('/api/search', async (req, res) => {
     try {
