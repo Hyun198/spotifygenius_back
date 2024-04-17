@@ -36,7 +36,8 @@ const getAccessToken = async () => {
         const response = await axios.post(AUTH_ENDPOINT, data, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
-            }
+            },
+            withCredentials: true
         });
         return response.data.access_token;
     } catch (error) {
@@ -66,7 +67,8 @@ app.post('/api/search', async (req, res) => {
                 type: "artist,album,track",
                 market: "KR",
                 limit: 10
-            }
+            },
+            withCredentials: true
         });
         const searchResults = {
             artists: response.data.artists.items,
@@ -81,6 +83,7 @@ app.post('/api/search', async (req, res) => {
             headers: {
                 Authorization: `Bearer ${token}`
             },
+            withCredentials: true
         });
         const TopArtistData = {
             artist: response.data.artists.items[0], // 최상위 아티스트 정보
