@@ -14,12 +14,19 @@ const deepl = require('deepl-node')
 
 const PORT = process.env.PORT || 8080;
 
-app.use(express.static(path.join(__dirname, './client/build')));
+/* app.use(express.static(path.join(__dirname, './client/build'))); */
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(cors({
-    origin: '*',
-    credentials: true
+    origin: [
+        "https://port-0-spotifygenius-back-2aat2clv0kzlcx.sel5.cloudtype.app",
+        "https://web-spotifygenius-front-2aat2clv0kzlcx.sel5.cloudtype.app",
+        "http://localhost:3000",
+    ],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    credentials: true,
 }));
 
 //Spotify api 설정
