@@ -18,9 +18,9 @@ app.use(express.static(path.join(__dirname, './client/build')));
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(cors({
-    origin: 'http://localhost:8080',
+    origin: '*',
     credentials: true
-}))
+}));
 
 //Spotify api 설정
 const CLIENT_ID = process.env.CLIENT_ID
